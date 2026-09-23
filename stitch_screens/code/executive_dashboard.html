@@ -1,0 +1,417 @@
+<!DOCTYPE html><html lang="en"><svg class="inline-defs-container" aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden"></svg><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+    @layer base {
+      html, body {
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+        background-color: #f8fafc;
+        color: #0f172a;
+      }
+      body {
+        overscroll-behavior: none;
+        -webkit-tap-highlight-color: transparent;
+        min-height: max(884px, 100dvh);
+      }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+      .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#d97706",
+            "primary-dark": "#b45309",
+            "primary-light": "#fef3c7",
+            "primary-container": "#fef3c7",
+            "on-primary-container": "#92400e",
+            "tertiary": "#059669",
+            "tertiary-light": "#ecfdf5",
+            "secondary": "#0284c7",
+            "secondary-light": "#f0f9ff",
+            "error": "#e11d48",
+            "error-light": "#fff1f2",
+            "surface": "#f8fafc",
+            "surface-card": "#ffffff",
+            "surface-border": "#e2e8f0",
+            "surface-container-high": "#f1f5f9",
+            "surface-container": "#f8fafc",
+            "on-surface": "#0f172a",
+            "on-surface-variant": "#475569",
+            "outline": "#64748b",
+            "outline-variant": "#94a3b8"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "2xl": "1rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "gutter-mobile": "1rem"
+          },
+          fontFamily: {
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "body-lg": ["Inter", "sans-serif"],
+            "body-md": ["Inter", "sans-serif"],
+            "body-sm": ["Inter", "sans-serif"],
+            "metric-display": ["JetBrains Mono", "monospace"],
+            "label-code": ["JetBrains Mono", "monospace"],
+            "label-status": ["JetBrains Mono", "monospace"],
+            "label-md": ["Inter", "sans-serif"]
+          },
+          fontSize: {
+            "headline-lg-mobile": ["22px", { lineHeight: "30px", letterSpacing: "-0.01em", fontWeight: "700" }],
+            "headline-sm": ["16px", { lineHeight: "24px", letterSpacing: "0em", fontWeight: "600" }],
+            "metric-display": ["24px", { lineHeight: "32px", letterSpacing: "-0.02em", fontWeight: "700" }],
+            "label-status": ["11px", { lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "600" }],
+            "label-code": ["12px", { lineHeight: "16px", letterSpacing: "0.02em", fontWeight: "500" }],
+            "label-md": ["12px", { lineHeight: "16px", fontWeight: "500" }],
+            "body-sm": ["13px", { lineHeight: "18px", fontWeight: "400" }],
+            "body-md": ["14px", { lineHeight: "22px", fontWeight: "400" }]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#f8fafc] font-body-md text-[#0f172a] flex flex-col min-h-screen">
+<!-- Top Navigation Header -->
+<header class="fixed top-0 w-full z-50 pt-safe bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="h-16 px-gutter-mobile flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<div class="relative flex items-center justify-center">
+<div class="w-9 h-9 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center overflow-hidden p-0.5">
+<span class="material-symbols-outlined text-amber-600 text-2xl">verified</span>
+</div>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="font-headline-sm text-headline-sm text-slate-900 tracking-tight leading-none">VIT Mithra</span>
+<span class="font-label-status text-label-status text-amber-700 uppercase bg-amber-100/90 font-semibold px-1.5 py-0.5 rounded-full leading-none">Admin</span>
+</div>
+<span class="font-label-md text-label-md text-slate-500 leading-tight">Attendance Portal</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button aria-label="Notifications" class="relative w-11 h-11 flex items-center justify-center rounded-full text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+<span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-amber-500 ring-2 ring-white"></span>
+</button>
+<div class="relative w-11 h-11 flex items-center justify-center">
+<img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida/AEtjO1XnXm_QA42ECzcMfxd4VWpUH1v5TEedranngl3wy50Mq7Duc0rPomPITy-_20jxgyt8cLc0N5zm9IYkPgGiMs5omS5NlQ53HyqneYZ9bSuz0X0kPNlnJecu6q2hibgf13w_W3QuKw4NxlR3To5ZQRT89VnodAklGVp8_mnN-pfOUihrFFEDHPnBG7bQ7rXHUbUugqCgYLmhTuhdG9TMDv5Ke7r3HHSGIiys_jU6_8lHGz3N5hNe8vTMufc">
+<span class="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Dashboard -->
+<main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#f8fafc]">
+<div class="flex flex-col w-full px-gutter-mobile space-y-space-md mt-3">
+<!-- Executive Greeting & Status Pill -->
+<div class="flex items-start justify-between gap-space-xs pt-space-xs"><div class="flex flex-col min-w-0"><div class="flex items-center gap-1.5"><span class="font-headline-lg-mobile text-headline-lg-mobile text-slate-900 tracking-tight">Dashboard Overview</span></div><p class="font-body-sm text-body-sm text-slate-500 truncate">Club attendance and quorum analytics</p></div><div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white border border-slate-200/80 shadow-xs shrink-0"><span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span></span><span class="font-label-status text-label-status text-slate-700 font-semibold tracking-wide">17 SEP 2026</span></div></div>
+<!-- Key Metrics 2x2 Bento Matrix -->
+<div class="grid grid-cols-2 gap-2.5">
+<!-- Present Metric -->
+<div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-slate-500">Present Today</span>
+<div class="w-6 h-6 rounded-md bg-emerald-50 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-metric-display text-metric-display text-slate-900">41</span>
+<span class="font-label-status text-label-status text-emerald-600 font-bold flex items-center">
+<span class="material-symbols-outlined text-xs">arrow_upward</span>+2
+            </span>
+</div>
+<span class="font-label-code text-label-code text-slate-400 mt-0.5">85.4% quorum reached</span>
+</div>
+<!-- Absent Metric -->
+<div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)]">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-slate-500">Absent Today</span>
+<div class="w-6 h-6 rounded-md bg-rose-50 text-rose-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-base">cancel</span>
+</div>
+</div>
+<div class="mt-2 flex items-baseline gap-2">
+<span class="font-metric-display text-metric-display text-slate-900">07</span>
+<span class="font-label-code text-label-code text-sky-700 flex items-center bg-sky-50 border border-sky-100 px-1 py-0.5 rounded font-medium">3 OD</span>
+</div>
+<span class="font-label-code text-label-code text-slate-400 mt-0.5">Approved duty leaves</span>
+</div>
+<!-- Total Strength -->
+
+<!-- Monthly Cumulative Benchmark -->
+<div class="flex flex-col justify-between p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)] col-span-2">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-slate-500">Monthly Avg</span>
+<div class="w-6 h-6 rounded-md bg-amber-50 text-amber-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-base">trending_up</span>
+</div>
+</div>
+<div class="mt-2 flex items-baseline gap-1">
+<span class="font-metric-display text-metric-display text-amber-600">88.2%</span>
+</div>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="font-label-status text-label-status text-emerald-600 font-semibold">+3.2% vs Target (85%)</span>
+</div>
+</div>
+</div>
+<!-- Today's Attendance Circular Ring Breakdown Card -->
+<div class="relative overflow-hidden rounded-2xl bg-white border border-slate-200/80 p-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]">
+<div class="absolute -right-10 -top-10 w-36 h-36 bg-amber-100/60 rounded-full blur-2xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-3">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm text-slate-900">Live Quorum Status</span>
+<span class="px-2 py-0.5 rounded-full text-label-status font-label-status bg-emerald-50 text-emerald-700 border border-emerald-200/60 font-semibold">Synced</span>
+</div>
+<span class="font-label-code text-label-code text-slate-500">Session #42</span>
+</div>
+<div class="flex items-center gap-4 py-2">
+<!-- High-End Radial SVG Gauge -->
+<div class="relative w-28 h-28 shrink-0 flex items-center justify-center">
+<svg class="w-28 h-28 transform -rotate-90" viewBox="0 0 100 100">
+<!-- Background track -->
+<circle class="text-slate-100" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-width="8"></circle>
+<!-- Absent arc (14.6% -> circumference ~251.32. Offset for 14.6% = ~36.7) -->
+<circle cx="50" cy="50" fill="none" opacity="0.4" r="40" stroke="#fda4af" stroke-dasharray="251.32" stroke-dashoffset="36.7" stroke-linecap="round" stroke-width="8"></circle>
+<!-- Present arc (85.4% -> 251.32 * 0.854 = ~214.6 dash, gap = 36.7) -->
+<circle class="drop-shadow-[0_2px_6px_rgba(217,119,6,0.3)]" cx="50" cy="50" fill="none" r="40" stroke="#d97706" stroke-dasharray="214.6 251.32" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center text-center">
+<span class="font-metric-display text-metric-display text-slate-900 tracking-tighter leading-none">85.4</span>
+<span class="font-label-code text-label-code text-amber-600 uppercase leading-tight font-bold">% Rate</span>
+</div>
+</div>
+<!-- Quick Distribution Legend -->
+<div class="flex-1 flex flex-col justify-center space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+<span class="font-label-md text-label-md text-slate-700">Present</span>
+</div>
+<span class="font-metric-display text-label-md text-slate-900 font-semibold">41 <span class="font-label-code text-slate-400 text-xs font-normal">(85.4%)</span></span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+<span class="font-label-md text-label-md text-slate-700">Absent</span>
+</div>
+<span class="font-metric-display text-label-md text-slate-900 font-semibold">07 <span class="font-label-code text-slate-400 text-xs font-normal">(14.6%)</span></span>
+</div>
+
+</div>
+</div>
+<!-- Quick Action Punch Button -->
+<a class="mt-3 w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-headline-sm text-headline-sm flex items-center justify-between shadow-sm active:scale-[0.98] transition-all" href="#">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-xl">how_to_reg</span>
+<span class="">Open Daily Attendance Roll</span>
+</div>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</a>
+</div>
+<!-- Attendance Trend Analytics Section -->
+<div class="flex flex-col space-y-2.5">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm text-slate-900">Attendance Velocity</span>
+<span class="font-body-sm text-body-sm text-slate-500">Weekly roll aggregate</span>
+</div>
+<!-- Segmented Time Control -->
+<div class="flex items-center p-0.5 rounded-lg bg-slate-100 border border-slate-200" id="chart-tabs">
+<button class="px-2.5 py-1 rounded-md text-label-status font-label-status bg-white text-amber-700 shadow-xs font-semibold transition-colors" data-range="7d">7D</button>
+<button class="px-2.5 py-1 rounded-md text-label-status font-label-status text-slate-600 hover:text-slate-900 transition-colors" data-range="30d">30D</button>
+<button class="px-2.5 py-1 rounded-md text-label-status font-label-status text-slate-600 hover:text-slate-900 transition-colors" data-range="3m">3M</button>
+</div>
+</div>
+<!-- Visual Interactive Trend SVG Card -->
+<div class="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)] relative">
+<div class="flex justify-between items-center text-label-code font-label-code text-slate-500 mb-1">
+<span class="font-medium">PEAK: 91.6% (MON)</span>
+<span class="text-amber-600 font-semibold flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> TODAY: 85.4%
+            </span>
+</div>
+<!-- Vector Area Curve -->
+<div class="relative w-full h-28 my-1">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 320 100">
+<defs>
+<linearGradient id="trendGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#d97706" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#d97706" stop-opacity="0.0"></stop>
+</linearGradient>
+</defs>
+<!-- Grid lines -->
+<line stroke="#e2e8f0" stroke-dasharray="2 4" stroke-width="1" x1="0" x2="320" y1="20" y2="20"></line>
+<line stroke="#e2e8f0" stroke-dasharray="2 4" stroke-width="1" x1="0" x2="320" y1="55" y2="55"></line>
+<line stroke="#e2e8f0" stroke-dasharray="2 4" stroke-width="1" x1="0" x2="320" y1="85" y2="85"></line>
+<!-- Filled gradient area -->
+<path d="M 0 50 L 53 25 L 106 12 L 160 38 L 213 28 L 266 45 L 320 32 L 320 100 L 0 100 Z" fill="url(#trendGradient)"></path>
+<!-- High-craft stroke curve -->
+<path d="M 0 50 L 53 25 L 106 12 L 160 38 L 213 28 L 266 45 L 320 32" fill="none" stroke="#d97706" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<!-- Monday High Point -->
+<circle cx="106" cy="12" fill="#ffffff" r="4" stroke="#059669" stroke-width="2.5"></circle>
+<!-- Today's Active Data Point -->
+<circle class="drop-shadow-[0_1px_4px_rgba(217,119,6,0.5)]" cx="320" cy="32" fill="#d97706" r="4.5" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between items-center text-label-status font-label-status text-slate-500 pt-1">
+<span class="">THU</span>
+<span class="">FRI</span>
+<span class="text-emerald-600 font-bold">MON</span>
+<span class="">TUE</span>
+<span class="">WED</span>
+<span class="">THU</span>
+<span class="text-amber-600 font-bold">TODAY</span>
+</div>
+</div>
+</div>
+<!-- Department Overview (Stack) -->
+<div class="flex flex-col space-y-2">
+<div class="flex items-center justify-between">
+<span class="font-headline-sm text-headline-sm text-slate-900">Department Overview</span>
+<span class="font-label-status text-label-status text-slate-500">3 Active Units</span>
+</div>
+<!-- Dept 1: Skill Advancement -->
+<div class="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 text-emerald-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">terminal</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-slate-900 leading-tight">Skill Advancement</h4>
+<span class="font-label-code text-label-code text-slate-500">18 Core Members enrolled</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-metric-display text-label-lg text-emerald-600 font-bold">94.4%</span>
+<div class="font-label-status text-label-status text-slate-500 font-medium">17/18 Present</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">
+<div class="h-full rounded-full bg-emerald-500" style="width: 94.4%;"></div>
+</div>
+</div>
+<!-- Dept 2: Technical Events Wing -->
+<div class="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-amber-50 border border-amber-100 text-amber-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">bolt</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-slate-900 leading-tight">Technical Events Wing</h4>
+<span class="font-label-code text-label-code text-slate-500">16 Core Members enrolled</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-metric-display text-label-lg text-amber-600 font-bold">81.2%</span>
+<div class="font-label-status text-label-status text-slate-500 font-medium">13/16 Present</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">
+<div class="h-full rounded-full bg-amber-500" style="width: 81.2%;"></div>
+</div>
+</div>
+<!-- Dept 3: Design & Media Cell -->
+<div class="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.03)] flex flex-col space-y-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-sky-50 border border-sky-100 text-sky-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-lg">draw</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm text-slate-900 leading-tight">Design &amp; Media Cell</h4>
+<span class="font-label-code text-label-code text-slate-500">14 Core Members enrolled</span>
+</div>
+</div>
+<div class="text-right">
+<span class="font-metric-display text-label-lg text-slate-800 font-bold">78.5%</span>
+<div class="font-label-status text-label-status text-slate-500 font-medium">11/14 Present</div>
+</div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1.5 rounded-full bg-slate-100 overflow-hidden">
+<div class="h-full rounded-full bg-sky-500" style="width: 78.5%;"></div>
+</div>
+</div>
+</div>
+<!-- Executive Audit & Activity Stream -->
+
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/95 backdrop-blur-xl border-t border-slate-200/90 shadow-[0_-2px_10px_rgba(0,0,0,0.03)]" data-active-classes="text-amber-600 font-semibold">
+<div class="flex items-center justify-around h-16 px-space-xs">
+<a aria-current="page" class="group flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors text-amber-600 font-semibold" data-path="dashboard" href="#">
+<div class="relative flex items-center justify-center w-10 h-7 rounded-full bg-amber-50 group-hover:bg-amber-100 transition-colors">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">home</span>
+</div>
+<span class="font-label-md text-label-md tracking-tight">Dashboard</span>
+</a>
+<a class="group flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-slate-900 transition-colors" data-path="daily-attendance" href="#">
+<div class="relative flex items-center justify-center w-10 h-7 rounded-full group-hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-2xl">how_to_reg</span>
+</div>
+<span class="font-label-md text-label-md tracking-tight">Daily Mark</span>
+</a>
+<a class="group flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-slate-900 transition-colors" data-path="monthly-view" href="#">
+<div class="relative flex items-center justify-center w-10 h-7 rounded-full group-hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-2xl">calendar_month</span>
+</div>
+<span class="font-label-md text-label-md tracking-tight">Monthly</span>
+</a>
+<a class="group flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-slate-900 transition-colors" data-path="members-roster" href="#">
+<div class="relative flex items-center justify-center w-10 h-7 rounded-full group-hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-2xl">group</span>
+</div>
+<span class="font-label-md text-label-md tracking-tight">Members</span>
+</a>
+</div>
+</nav>
+<script>
+    // Tab switching interactivity for the velocity trend buttons
+    const buttons = document.querySelectorAll('#chart-tabs button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => {
+          b.className = 'px-2.5 py-1 rounded-md text-label-status font-label-status text-slate-600 hover:text-slate-900 transition-colors';
+        });
+        btn.className = 'px-2.5 py-1 rounded-md text-label-status font-label-status bg-white text-amber-700 shadow-xs font-semibold transition-colors';
+      });
+    });
+  </script>
+
+
+</body></html>

@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getAdminDoc() {
+      return get(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+
+    function isActiveAdmin() {
+      return isAuthenticated() &&
+             exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
+             getAdminDoc().data.status == 'ACTIVE';
+    }
+
+    function isPresident() {
+      return isActiveAdmin() && getAdminDoc().data.role == 'PRESIDENT';
+    }
+
+    // Admins collection:
+    // Only active presidents can write/manage admins. Active admins can read their own profile.
+    match /admins/{adminId} {
+      allow read: if isActiveAdmin() && (request.auth.uid == adminId || isPresident());
+      allow write: if isPresident();
+    }
+
+    // Members collection:
+    // Only active administrators can read or write members.
+    match /members/{memberId} {
+      allow read: if isActiveAdmin();
+      allow create, update: if isActiveAdmin();
+      // Hard deletes forbidden - soft deactivation only
+      allow delete: if false;
+    }
+
+    // Departments collection:
+    // Only active administrators can read or write departments.
+    match /departments/{deptId} {
+      allow read: if isActiveAdmin();
+      allow create, update: if isActiveAdmin();
+      allow delete: if false;
+    }
+
+    // Attendance collection:
+    // Only active administrators can read or mark attendance.
+    match /attendance/{attendanceId} {
+      allow read: if isActiveAdmin();
+      allow create, update: if isActiveAdmin();
+      allow delete: if isPresident();
+    }
+
+    // Activity Logs:
+    // Audit records are append-only. No modifications or deletions permitted.
+    match /activity_logs/{logId} {
+      allow read: if isActiveAdmin();
+      allow create: if isActiveAdmin();
+      allow update, delete: if false;
+    }
+
+    // Deny all other access by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

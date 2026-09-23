@@ -1,0 +1,351 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100vw;margin:0;padding:0;background-color:#F8FAFC;color:#0F172A;}body{overscroll-behavior:none;-webkit-tap-highlight-color:transparent;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-container": "#fffbff", "surface-tint": "#904d00", "primary-container": "#b15f00", "on-primary-fixed": "#2f1500", "on-error-container": "#93000a", "on-tertiary-fixed": "#331200", "primary-fixed-dim": "#ffb77d", "tertiary": "#059669", "surface-container-lowest": "#ffffff", "background": "#F8FAFC", "on-background": "#0F172A", "outline-variant": "#E2E8F0", "tertiary-fixed-dim": "#a7f3d0", "on-tertiary-fixed-variant": "#065f46", "on-secondary-fixed-variant": "#3c475a", "inverse-on-surface": "#f8fafc", "surface-bright": "#ffffff", "primary-fixed": "#ffdcc3", "surface": "#F8FAFC", "on-secondary-container": "#1e293b", "error-container": "#fee2e2", "on-secondary-fixed": "#0f172a", "on-secondary": "#ffffff", "inverse-primary": "#ffb77d", "on-surface": "#0F172A", "on-tertiary-container": "#ffffff", "surface-dim": "#F1F5F9", "on-tertiary": "#ffffff", "on-primary": "#ffffff", "secondary-container": "#E2E8F0", "primary": "#d97706", "surface-container-highest": "#E2E8F0", "surface-container-high": "#EDF2F7", "surface-container": "#F1F5F9", "error": "#dc2626", "secondary-fixed-dim": "#cbd5e1", "surface-variant": "#F1F5F9", "on-error": "#ffffff", "secondary": "#475569", "secondary-fixed": "#e2e8f0", "surface-container-low": "#ffffff", "inverse-surface": "#0F172A", "on-surface-variant": "#64748B", "on-primary-fixed-variant": "#6e3900", "tertiary-container": "#10b981", "outline": "#94A3B8", "tertiary-fixed": "#d1fae5" }, "borderRadius": { "DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-sm": "0.5rem", "gutter-mobile": "1rem", "space-xl": "2.5rem", "space-xs": "0.25rem", "gutter": "1.5rem", "space-lg": "1.5rem", "space-md": "1rem", "margin-mobile": "1rem", "margin": "2rem" }, "fontFamily": { "headline-lg": ["Plus Jakarta Sans"], "headline-lg-mobile": ["Plus Jakarta Sans"], "label-lg": ["Inter"], "body-sm": ["Inter"], "headline-xl": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "metric-display": ["JetBrains Mono"], "label-status": ["JetBrains Mono"], "headline-xl-mobile": ["Plus Jakarta Sans"], "body-md": ["Inter"], "label-code": ["JetBrains Mono"], "label-md": ["Inter"], "headline-md": ["Plus Jakarta Sans"] }, "fontSize": { "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "headline-lg-mobile": ["22px", { "lineHeight": "30px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }], "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.03em", "fontWeight": "700" }], "headline-sm": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "metric-display": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-status": ["11px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "600" }], "headline-xl-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "label-code": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "label-md": ["12px", { "lineHeight": "16px", "fontWeight": "500" }], "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-[#F8FAFC] font-body-md text-[#0F172A] flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-white/90 backdrop-blur-xl border-b border-slate-200/80 shadow-[0_1px_3px_rgba(0,0,0,0.05)]"><div class="h-16 px-gutter-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="relative flex items-center justify-center"><div class="w-9 h-9 rounded-lg bg-amber-50 border border-amber-200/70 flex items-center justify-center overflow-hidden p-0.5"><span class="material-symbols-outlined text-amber-600 text-2xl">verified</span></div></div><div class="flex flex-col"><div class="flex items-center gap-1.5"><span class="font-headline-sm text-headline-sm text-[#0F172A] tracking-tight leading-none">VIT Mithra</span><span class="font-label-status text-[10px] text-amber-700 uppercase bg-amber-100 font-semibold px-1.5 py-0.5 rounded-full leading-none border border-amber-200">Admin</span></div><span class="font-label-md text-label-md text-slate-500 leading-tight">Attendance Portal</span></div></div><div class="flex items-center gap-space-xs"><button aria-label="Notifications" class="relative w-11 h-11 flex items-center justify-center rounded-full text-slate-600 hover:text-[#0F172A] hover:bg-slate-100 transition-colors"><span class="material-symbols-outlined text-2xl">notifications</span><span class="absolute top-2.5 right-2.5 w-2 h-2 rounded-full bg-amber-500 ring-2 ring-white"></span></button><div class="relative w-11 h-11 flex items-center justify-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-1 ring-slate-200" src="https://lh3.googleusercontent.com/aida/AEtjO1XnXm_QA42ECzcMfxd4VWpUH1v5TEedranngl3wy50Mq7Duc0rPomPITy-_20jxgyt8cLc0N5zm9IYkPgGiMs5omS5NlQ53HyqneYZ9bSuz0X0kPNlnJecu6q2hibgf13w_W3QuKw4NxlR3To5ZQRT89VnodAklGVp8_mnN-pfOUihrFFEDHPnBG7bQ7rXHUbUugqCgYLmhTuhdG9TMDv5Ke7r3HHSGIiys_jU6_8lHGz3N5hNe8vTMufc"><span class="absolute bottom-1.5 right-1.5 w-2.5 h-2.5 rounded-full bg-emerald-500 ring-2 ring-white"></span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-20 bg-[#F8FAFC]"><div class="flex flex-col w-full pb-28">
+<!-- Top Operational Header Section -->
+<section class="px-gutter-mobile pt-3 pb-4 flex flex-col gap-3">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-[#0F172A] tracking-tight">Daily Attendance</h1>
+<p class="font-body-sm text-body-sm text-slate-500 mt-0.5">Record and manage today’s club attendance.</p>
+</div>
+<div class="flex items-center gap-1.5 bg-emerald-50 border border-emerald-200/80 px-2.5 py-1 rounded-full shadow-sm">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="font-label-status text-label-status text-emerald-700 font-semibold uppercase tracking-wider">Live Sync</span>
+</div>
+</div>
+<!-- Date and Department Selector Pills -->
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
+<button class="flex items-center gap-1.5 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 active:scale-95 text-[#0F172A] px-3 py-2 rounded-lg shadow-sm transition-all text-left shrink-0" type="button">
+<span class="material-symbols-outlined text-amber-600 text-lg">calendar_today</span>
+<span class="font-label-md text-label-md font-medium text-[#0F172A]">Thu, 17 Sep 2026</span>
+<span class="material-symbols-outlined text-slate-400 text-base">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 bg-white border border-slate-200 hover:border-slate-300 hover:bg-slate-50 active:scale-95 text-[#0F172A] px-3 py-2 rounded-lg shadow-sm transition-all text-left shrink-0" type="button">
+<span class="material-symbols-outlined text-slate-600 text-lg">domain</span>
+<span class="font-label-md text-label-md font-medium text-[#0F172A]">All Departments</span>
+<span class="material-symbols-outlined text-slate-400 text-base">expand_more</span>
+</button>
+<button aria-label="Session settings" class="flex items-center justify-center w-9 h-9 rounded-lg bg-white border border-slate-200 text-slate-600 hover:text-[#0F172A] hover:bg-slate-50 active:scale-95 shrink-0 transition-colors shadow-sm" type="button">
+<span class="material-symbols-outlined text-lg">tune</span>
+</button>
+</div>
+<!-- Quick Stat Overview Bar -->
+<div class="grid grid-cols-2 gap-2 mt-1"><div class="bg-white border border-slate-200/80 p-2.5 rounded-xl shadow-sm flex flex-col items-start justify-center"><span class="font-label-status text-label-status text-emerald-600 font-semibold uppercase">Present</span><div class="flex items-baseline gap-1 mt-0.5"><span class="font-metric-display text-metric-display text-[#0F172A]" id="stat-present">5</span><span class="font-label-status text-label-status text-slate-400">/ 6</span></div></div><div class="bg-white border border-slate-200/80 p-2.5 rounded-xl shadow-sm flex flex-col items-start justify-center"><span class="font-label-status text-label-status text-rose-600 font-semibold uppercase">Absent</span><div class="flex items-baseline gap-1 mt-0.5"><span class="font-metric-display text-metric-display text-[#0F172A]" id="stat-absent">1</span><span class="font-label-status text-label-status text-slate-400">/ 6</span></div></div></div>
+<!-- Search & Quick Action Controls -->
+<div class="flex flex-col gap-2 pt-1">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl pointer-events-none">search</span>
+<input class="w-full h-11 pl-10 pr-10 rounded-lg bg-white border border-slate-200 text-[#0F172A] placeholder:text-slate-400 font-body-sm text-body-sm focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 transition-all shadow-sm" id="member-search" placeholder="Search by name or Member ID (VM...)" type="text">
+<button aria-label="Clear search" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700" id="clear-search" type="button">
+<span class="material-symbols-outlined text-lg">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between gap-2">
+<span class="font-label-status text-label-status text-slate-500 uppercase tracking-wider font-semibold">Active Roster (6 Members)</span>
+<button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-50 border border-amber-200/80 hover:bg-amber-100/70 text-amber-700 active:scale-95 shadow-sm transition-all" id="mark-all-present-btn" type="button">
+<span class="material-symbols-outlined text-base text-amber-700">done_all</span>
+<span class="font-label-md text-label-md font-semibold text-amber-800">Mark All Present</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Attendance Member Card Roster -->
+<section class="px-gutter-mobile flex flex-col gap-3">
+<!-- Member 1: Aditya Verma -->
+<article class="member-card bg-white border border-slate-200 rounded-xl p-3 shadow-sm hover:shadow transition-all flex flex-col gap-3" data-id="VM001" data-state="present">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative w-11 h-11 rounded-full overflow-hidden shrink-0 shadow-sm border border-slate-100">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of Aditya Verma, a male South Asian university computer engineering student with warm rim lighting against a deep ambient navy studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmZ79hNWFY-6up93eQyNsmGUOh2_zWqZhaoqv33xKL0-6BEMELovnXXHPAMN-8IKBqVeq9EnJCWgI_7oVNkQd5k-MhK-efXnoErZpZdDa90JSwpVdkGuUTdRNwQ26kP4ZW3cbOR-wFharizGcNULI28pMEy1lx1uSwbzJjzsi2Mep3bY3NIVVVHMJNFcWiM3bMpxAvReKB4SBZo6N4h61AT1Ipq84y1QW-BQ_iifuV-x_AL7CoB8DX">
+<span class="status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-[#0F172A] font-semibold truncate">Aditya Verma</h2>
+<span class="font-label-code text-label-code text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">VM001</span>
+</div>
+<p class="font-label-md text-label-md text-slate-500 font-medium truncate">Skill Advancement</p>
+</div>
+</div>
+<span class="status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+<span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
+<span class="font-label-status text-label-status uppercase font-bold">Present</span>
+</span>
+</div>
+<!-- Segmented 3-Way Quick Toggle Bar -->
+<div class="grid grid-cols-2 gap-1.5 bg-slate-50/80 border border-slate-200/80 p-1 rounded-lg"><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-emerald-500 text-white shadow-sm" data-status="present" type="button"><span class="material-symbols-outlined text-base">check</span><span class="">Present</span></button><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md text-slate-600 hover:text-[#0F172A] hover:bg-white/80" data-status="absent" type="button"><span class="material-symbols-outlined text-base">close</span><span class="">Absent</span></button></div>
+</article>
+<!-- Member 2: Sneha Sundaram -->
+<article class="member-card bg-white border border-slate-200 rounded-xl p-3 shadow-sm hover:shadow transition-all flex flex-col gap-3" data-id="VM002" data-state="absent">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative w-11 h-11 rounded-full overflow-hidden shrink-0 shadow-sm border border-slate-100">
+<img class="w-full h-full object-cover" data-alt="Portrait photo of Sneha Sundaram, a young Indian female student designer with artistic lighting in an administrative dark tech ambient setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7RIbi_fxeulg1VBYsfxL17IFZfppGnMx4UESqfHiLWA5OZPQatlDESlE48ouzKXQDtknwhxEVECioURwWs5rkbgc4oTlktKD07QJxJ2z6GTxknv8IyVi0Ac8c7vJsTBn6JU5mYDE7kWBhWehlzlRmpTUvTPS4K2H4si22PILjYwJEDSBmNm-0MipiamHgKHluXlEH698oZ6SrOfiZecgyQXh0_ojuvh_jdVzhp8PnP1OhcAy9AB5G">
+<span class="status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-rose-500 ring-2 ring-white"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-[#0F172A] font-semibold truncate">Sneha Sundaram</h2>
+<span class="font-label-code text-label-code text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">VM002</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-slate-500 font-medium truncate">Design &amp; Media</span>
+<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+<span class="font-label-status text-[10px] text-rose-700 font-semibold bg-rose-50 border border-rose-200 px-1 rounded">Duty Leave</span>
+</div>
+</div>
+</div>
+<span class="status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200 shrink-0">
+<span class="material-symbols-outlined text-sm text-rose-600">cancel</span>
+<span class="font-label-status text-label-status uppercase font-bold">Absent</span>
+</span>
+</div>
+<!-- Segmented 3-Way Quick Toggle Bar -->
+<div class="grid grid-cols-2 gap-1.5 bg-slate-50/80 border border-slate-200/80 p-1 rounded-lg"><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md text-slate-600 hover:text-[#0F172A] hover:bg-white/80" data-status="present" type="button"><span class="material-symbols-outlined text-base">check</span><span class="">Present</span></button><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-rose-500 text-white shadow-sm" data-status="absent" type="button"><span class="material-symbols-outlined text-base">close</span><span class="">Absent</span></button></div>
+</article>
+<!-- Member 3: Rohan Iyer -->
+<article class="member-card bg-white border border-slate-200 rounded-xl p-3 shadow-sm hover:shadow transition-all flex flex-col gap-3" data-id="VM003" data-state="present">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative w-11 h-11 rounded-full overflow-hidden shrink-0 shadow-sm border border-slate-100">
+<img class="w-full h-full object-cover" data-alt="Portrait photography of Rohan Iyer, an Indian male tech organizer with glasses in a modern campus lab environment with golden amber rim highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGe2ZHXZc0vjuLiJ09tTYFSoMGceotPz2MBtiQ-uUFnVpMxPkPvmRKBdarg9kLOab0MRR9r5PrQZYkyfd5E4TC_oB1ZYHdETJ_5QHOuUmVeFeqwuHPJPFJVj3PTaogP8HwanOWw0osDKjG7aYJAU3HY-qNJAo_CiVBbe1D9vDQWwKZIOzQ_mN14FCvPTZcAK9ndFUPdrTkgh_78GPP3ZZZK-QPDLA2lE0Yszzs3loERN0HU_TYtwpw">
+<span class="status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-[#0F172A] font-semibold truncate">Rohan Iyer</h2>
+<span class="font-label-code text-label-code text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">VM003</span>
+</div>
+<p class="font-label-md text-label-md text-slate-500 font-medium truncate">Technical Events</p>
+</div>
+</div>
+<span class="status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+<span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
+<span class="font-label-status text-label-status uppercase font-bold">Present</span>
+</span>
+</div>
+<div class="grid grid-cols-2 gap-1.5 bg-slate-50/80 border border-slate-200/80 p-1 rounded-lg"><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-emerald-500 text-white shadow-sm" data-status="present" type="button"><span class="material-symbols-outlined text-base">check</span><span class="">Present</span></button><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md text-slate-600 hover:text-[#0F172A] hover:bg-white/80" data-status="absent" type="button"><span class="material-symbols-outlined text-base">close</span><span class="">Absent</span></button></div>
+</article>
+<!-- Member 4: Ananya Deshmukh -->
+<article class="member-card bg-white border border-slate-200 rounded-xl p-3 shadow-sm hover:shadow transition-all flex flex-col gap-3" data-id="VM004" data-state="present"><div class="flex items-start justify-between gap-2"><div class="flex items-center gap-3 min-w-0"><div class="relative w-11 h-11 rounded-full overflow-hidden shrink-0 shadow-sm border border-slate-100"><img class="w-full h-full object-cover" data-alt="Portrait of Ananya Deshmukh, female Indian student leader in university conference hall with dark elegant ambient background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoDdYVik1oA_XZAocPzcQh6v8xdU65ujjNWzEs86TywLggT3FY05IiD1nelZFMok8glNoTEb8XCQ_eSP6gQVteFvouQpzcdId2DrwBYH4-73kU6qKvhTGPmRm5yAT-AE57pQRo1ca6ArCKDNoQsvTzKjgk-8zfYCEFlpzKaZqzXZ1KPnmSPlyQ9qqegQvXzV4l09T9K5pRmaS3SNLjWhCvdLwRgzh6utFkRrIMM-C25oXEFrxuagpY"><span class="status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white"></span></div><div class="flex flex-col min-w-0"><div class="flex items-center gap-2"><h2 class="font-headline-sm text-headline-sm text-[#0F172A] font-semibold truncate">Ananya Deshmukh</h2><span class="font-label-code text-label-code text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">VM004</span></div><p class="font-label-md text-label-md text-slate-500 font-medium truncate">Skill Advancement</p></div></div><span class="status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0"><span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span><span class="font-label-status text-label-status uppercase font-bold">Present</span></span></div><div class="grid grid-cols-2 gap-1.5 bg-slate-50/80 border border-slate-200/80 p-1 rounded-lg"><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-emerald-500 text-white shadow-sm" data-status="present" type="button"><span class="material-symbols-outlined text-base">check</span><span class="">Present</span></button><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md text-slate-600 hover:text-[#0F172A] hover:bg-white/80" data-status="absent" type="button"><span class="material-symbols-outlined text-base">close</span><span class="">Absent</span></button></div></article>
+<!-- Member 5: Kavya Pillai -->
+<article class="member-card bg-white border border-slate-200 rounded-xl p-3 shadow-sm hover:shadow transition-all flex flex-col gap-3" data-id="VM005" data-state="present">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative w-11 h-11 rounded-full overflow-hidden shrink-0 shadow-sm bg-amber-50 border border-amber-200 flex items-center justify-center">
+<span class="font-headline-sm text-headline-sm font-bold text-amber-700">KP</span>
+<span class="status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-[#0F172A] font-semibold truncate">Kavya Pillai</h2>
+<span class="font-label-code text-label-code text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">VM005</span>
+</div>
+<p class="font-label-md text-label-md text-slate-500 font-medium truncate">Technical Events</p>
+</div>
+</div>
+<span class="status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+<span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
+<span class="font-label-status text-label-status uppercase font-bold">Present</span>
+</span>
+</div>
+<div class="grid grid-cols-2 gap-1.5 bg-slate-50/80 border border-slate-200/80 p-1 rounded-lg"><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-emerald-500 text-white shadow-sm" data-status="present" type="button"><span class="material-symbols-outlined text-base">check</span><span class="">Present</span></button><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md text-slate-600 hover:text-[#0F172A] hover:bg-white/80" data-status="absent" type="button"><span class="material-symbols-outlined text-base">close</span><span class="">Absent</span></button></div>
+</article>
+<!-- Member 6: Vikramaditya Rao -->
+<article class="member-card bg-white border border-slate-200 rounded-xl p-3 shadow-sm hover:shadow transition-all flex flex-col gap-3" data-id="VM006" data-state="present">
+<div class="flex items-start justify-between gap-2">
+<div class="flex items-center gap-3 min-w-0">
+<div class="relative w-11 h-11 rounded-full overflow-hidden shrink-0 shadow-sm bg-slate-100 border border-slate-200 flex items-center justify-center">
+<span class="font-headline-sm text-headline-sm font-bold text-slate-700">VR</span>
+<span class="status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-[#0F172A] font-semibold truncate">Vikramaditya Rao</h2>
+<span class="font-label-code text-label-code text-slate-600 bg-slate-100 border border-slate-200 px-1.5 py-0.5 rounded">VM006</span>
+</div>
+<p class="font-label-md text-label-md text-slate-500 font-medium truncate">Operations</p>
+</div>
+</div>
+<span class="status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
+<span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
+<span class="font-label-status text-label-status uppercase font-bold">Present</span>
+</span>
+</div>
+<div class="grid grid-cols-2 gap-1.5 bg-slate-50/80 border border-slate-200/80 p-1 rounded-lg"><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-emerald-500 text-white shadow-sm" data-status="present" type="button"><span class="material-symbols-outlined text-base">check</span><span class="">Present</span></button><button class="toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md text-slate-600 hover:text-[#0F172A] hover:bg-white/80" data-status="absent" type="button"><span class="material-symbols-outlined text-base">close</span><span class="">Absent</span></button></div>
+</article>
+<!-- Empty Search State (hidden by default) -->
+<div class="hidden flex-col items-center justify-center py-10 px-4 text-center bg-white border border-slate-200 rounded-xl" id="empty-state">
+<div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-slate-400 text-2xl">person_search</span>
+</div>
+<p class="font-headline-sm text-headline-sm text-[#0F172A]">No Members Found</p>
+<p class="font-body-sm text-body-sm text-slate-500 mt-1 max-w-xs">Try adjusting your search query or department filter.</p>
+</div>
+</section>
+<!-- Sticky Floating Save Confirmation Bar (positioned comfortably above navigation) -->
+<aside class="fixed bottom-24 left-3 right-3 z-40">
+<div class="w-full bg-white/95 backdrop-blur-xl border border-slate-200/90 rounded-2xl p-2.5 shadow-xl flex items-center justify-between gap-2 ring-1 ring-black/[0.04]">
+<!-- Unsaved Changes Pill -->
+<div class="flex items-center gap-2 pl-2">
+<span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse shrink-0"></span>
+<span class="font-label-status text-label-status text-[#0F172A] font-semibold truncate" id="unsaved-badge">3 unsaved changes</span>
+</div>
+<!-- Action Buttons -->
+<div class="flex items-center gap-2 shrink-0">
+<button class="h-11 px-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-700 hover:text-[#0F172A] hover:bg-slate-200/70 active:scale-95 transition-all font-label-md text-label-md font-semibold" id="discard-btn" type="button">
+          Discard
+        </button>
+<button class="h-11 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-headline-sm text-headline-sm font-bold active:scale-95 shadow-md shadow-amber-500/25 flex items-center gap-1.5 transition-all" id="save-btn" type="button">
+<span class="material-symbols-outlined text-xl">check_circle</span>
+<span class="">Save</span>
+</button>
+</div>
+</div>
+</aside>
+<!-- Saved Toast Notification -->
+<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-opacity duration-300" id="save-toast">
+<div class="bg-[#0F172A] text-white px-4 py-2.5 rounded-full shadow-2xl flex items-center gap-2 border border-slate-800">
+<span class="material-symbols-outlined text-xl text-emerald-400">task_alt</span>
+<span class="font-label-md text-label-md font-semibold">Attendance Saved to Server</span>
+</div>
+</div>
+</div>
+<script>
+  (function() {
+    let unsavedCount = 3;
+    const cards = document.querySelectorAll('.member-card');
+    const unsavedBadge = document.getElementById('unsaved-badge');
+    const markAllBtn = document.getElementById('mark-all-present-btn');
+    const discardBtn = document.getElementById('discard-btn');
+    const saveBtn = document.getElementById('save-btn');
+    const toast = document.getElementById('save-toast');
+    const searchInput = document.getElementById('member-search');
+    const clearSearch = document.getElementById('clear-search');
+    const emptyState = document.getElementById('empty-state');
+
+    const statPresent = document.getElementById('stat-present');
+    const statLate = document.getElementById('stat-late');
+    const statAbsent = document.getElementById('stat-absent');
+
+    function updateStats() {
+      let p = 0, l = 0, a = 0;
+      cards.forEach(c => {
+        const state = c.getAttribute('data-state');
+        if (state === 'present') p++;
+        if (state === 'late') l++;
+        if (state === 'absent') a++;
+      });
+      statPresent.textContent = p;
+      statLate.textContent = l;
+      statAbsent.textContent = a;
+    }
+
+    function setCardStatus(card, status) {
+      const prevStatus = card.getAttribute('data-state');
+      if (prevStatus === status) return;
+
+      card.setAttribute('data-state', status);
+      unsavedCount++;
+      unsavedBadge.textContent = `${unsavedCount} unsaved change${unsavedCount === 1 ? '' : 's'}`;
+
+      // Update badge
+      const badge = card.querySelector('.status-badge');
+      const dot = card.querySelector('.status-indicator-dot');
+      
+      if (status === 'present') {
+        badge.className = 'status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0';
+        badge.innerHTML = '<span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span><span class="font-label-status text-label-status uppercase font-bold">Present</span>';
+        dot.className = 'status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-emerald-500 ring-2 ring-white';
+      } else if (status === 'late') {
+        badge.className = 'status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200 shrink-0';
+        badge.innerHTML = '<span class="material-symbols-outlined text-sm text-amber-600">schedule</span><span class="font-label-status text-label-status uppercase font-bold">Late</span>';
+        dot.className = 'status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-amber-500 ring-2 ring-white';
+      } else {
+        badge.className = 'status-badge flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-50 text-rose-700 border border-rose-200 shrink-0';
+        badge.innerHTML = '<span class="material-symbols-outlined text-sm text-rose-600">cancel</span><span class="font-label-status text-label-status uppercase font-bold">Absent</span>';
+        dot.className = 'status-indicator-dot absolute bottom-0 right-0 w-3 h-3 rounded-full bg-rose-500 ring-2 ring-white';
+      }
+
+      // Update toggle buttons
+      const buttons = card.querySelectorAll('.toggle-btn');
+      buttons.forEach(btn => {
+        const btnStatus = btn.getAttribute('data-status');
+        if (btnStatus === status) {
+          if (status === 'present') btn.className = 'toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-emerald-500 text-white shadow-sm';
+          if (status === 'late') btn.className = 'toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-amber-500 text-white shadow-sm';
+          if (status === 'absent') btn.className = 'toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md font-semibold bg-rose-500 text-white shadow-sm';
+        } else {
+          btn.className = 'toggle-btn flex items-center justify-center gap-1.5 h-10 rounded-md transition-all font-label-md text-label-md text-slate-600 hover:text-[#0F172A] hover:bg-white/80';
+        }
+      });
+
+      updateStats();
+    }
+
+    // Toggle button clicks
+    cards.forEach(card => {
+      const buttons = card.querySelectorAll('.toggle-btn');
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const status = btn.getAttribute('data-status');
+          setCardStatus(card, status);
+        });
+      });
+    });
+
+    // Mark all present
+    markAllBtn.addEventListener('click', () => {
+      cards.forEach(card => setCardStatus(card, 'present'));
+    });
+
+    // Discard changes
+    discardBtn.addEventListener('click', () => {
+      unsavedCount = 0;
+      unsavedBadge.textContent = '0 unsaved changes';
+    });
+
+    // Save attendance
+    saveBtn.addEventListener('click', () => {
+      unsavedCount = 0;
+      unsavedBadge.textContent = 'All synced';
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2000);
+    });
+
+    // Search filter
+    searchInput.addEventListener('input', (e) => {
+      const val = e.target.value.toLowerCase().trim();
+      clearSearch.classList.toggle('hidden', val === '');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const id = card.getAttribute('data-id').toLowerCase();
+        if (text.includes(val) || id.includes(val)) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      emptyState.classList.toggle('hidden', visible > 0);
+      emptyState.classList.toggle('flex', visible === 0);
+    });
+
+    clearSearch.addEventListener('click', () => {
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input'));
+      searchInput.focus();
+    });
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-white/90 backdrop-blur-xl border-t border-slate-200/80 shadow-[0_-2px_12px_rgba(0,0,0,0.05)]" data-active-classes="text-amber-700 font-semibold"><div class="flex items-center justify-around h-20 px-space-xs"><a class="group flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-[#0F172A] transition-colors" data-path="dashboard" href="#"><div class="relative flex items-center justify-center w-10 h-7 rounded-full group-hover:bg-slate-100 transition-colors"><span class="material-symbols-outlined text-2xl">home</span></div><span class="font-label-md text-label-md tracking-tight">Dashboard</span></a><a aria-current="page" class="group flex flex-col items-center justify-center flex-1 h-full gap-1 transition-colors text-amber-700 font-semibold" data-path="daily-attendance" href="#"><div class="relative flex items-center justify-center w-10 h-7 rounded-full bg-amber-50 group-hover:bg-amber-100 transition-colors"><span class="material-symbols-outlined text-2xl text-amber-600">how_to_reg</span></div><span class="font-label-md text-label-md tracking-tight">Daily Mark</span></a><a class="group flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-[#0F172A] transition-colors" data-path="monthly-view" href="#"><div class="relative flex items-center justify-center w-10 h-7 rounded-full group-hover:bg-slate-100 transition-colors"><span class="material-symbols-outlined text-2xl">calendar_month</span></div><span class="font-label-md text-label-md tracking-tight">Monthly</span></a><a class="group flex flex-col items-center justify-center flex-1 h-full gap-1 text-slate-500 hover:text-[#0F172A] transition-colors" data-path="members-roster" href="#"><div class="relative flex items-center justify-center w-10 h-7 rounded-full group-hover:bg-slate-100 transition-colors"><span class="material-symbols-outlined text-2xl">group</span></div><span class="font-label-md text-label-md tracking-tight">Members</span></a></div></nav></body></html>
