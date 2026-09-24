@@ -167,9 +167,11 @@ class MockWriteBatch:
 
 
 class MockFirestoreClient:
-    def __init__(self):
+    def __init__(self, persist_to_disk: bool = True):
         self._store: Dict[str, Dict[str, Dict[str, Any]]] = {}
-        self._load_from_disk()
+        self._persist_to_disk = persist_to_disk
+        if self._persist_to_disk:
+            self._load_from_disk()
 
     def _load_from_disk(self) -> None:
         """Load persisted mock collections from disk if available."""
@@ -185,6 +187,8 @@ class MockFirestoreClient:
 
     def save_to_disk(self) -> None:
         """Write current database state to JSON file on disk."""
+        if not self._persist_to_disk:
+            return
         try:
             os.makedirs(DATA_DIR, exist_ok=True)
             with open(LOCAL_DB_FILE, "w", encoding="utf-8") as f:
@@ -199,9 +203,8 @@ class MockFirestoreClient:
         return MockWriteBatch(on_commit=self.save_to_disk)
 
     def clear(self):
-        """Reset mock database (useful for unit tests)."""
+        """Reset mock database in-memory (does not overwrite disk)."""
         self._store.clear()
-        self.save_to_disk()
 
 
 def initialize_firebase() -> None:

@@ -37,9 +37,9 @@ class Settings(BaseSettings):
         default=None, description="Backend secret API key for protected service-to-service calls"
     )
 
-    # Administrator Clearance Passkey
+    # Administrator Clearance Passkey (Loaded from .env or environment variables)
     ADMIN_PASSKEY: str = Field(
-        default="Mithra2026#", description="Master passkey required for administrator console access"
+        default="", description="Master passkey required for administrator console access"
     )
 
     # CORS Configuration

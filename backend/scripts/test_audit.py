@@ -13,8 +13,10 @@ def run_tests():
 
     print('\n=== 2. AUTHENTICATION (ADMIN & STUDENT) ===')
     # Admin login
+    import os
+    admin_pass = os.environ.get("ADMIN_PASSKEY", "")
     admin_req = urllib.request.Request('http://127.0.0.1:8000/api/auth/login', 
-        data=json.dumps({'identifier': 'admin@mithra.vit.ac.in', 'password': 'any'}).encode(),
+        data=json.dumps({'identifier': 'admin@mithra.vit.ac.in', 'passkey': admin_pass}).encode(),
         headers={'Content-Type': 'application/json'})
     admin_data = json.loads(urllib.request.urlopen(admin_req).read().decode())['data']
     admin_token = admin_data['token']

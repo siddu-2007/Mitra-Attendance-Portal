@@ -23,6 +23,8 @@ def setup_test_environment():
     settings.API_KEY = "test_secret_api_key"
     initialize_firebase()
     db = get_db()
+    if hasattr(db, "_persist_to_disk"):
+        db._persist_to_disk = False
     if hasattr(db, "clear"):
         db.clear()
 
