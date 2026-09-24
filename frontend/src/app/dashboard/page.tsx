@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { api } from "@/lib/api";
 import { DashboardData } from "@/lib/types";
@@ -19,7 +20,8 @@ interface SavedSessionSummary {
 }
 
 export default function DashboardPage() {
-  const { role, admin, student } = useAuth();
+  const router = useRouter();
+  const { role, admin, student, isAuthenticated, isLoading } = useAuth();
   const [data, setData] = useState<DashboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"7d" | "30d" | "3m">("7d");
@@ -110,8 +112,30 @@ export default function DashboardPage() {
   };
 
   useEffect(() => {
+    if (isLoading) return;
+    if (!isAuthenticated) {
+      router.replace("/login");
+      return;
+    }
+    if (role === "STUDENT") {
+      router.replace("/student");
+      return;
+    }
     fetchDashboard();
-  }, [role]);
+  }, [role, isAuthenticated, isLoading, router]);
+
+  if (isLoading || !isAuthenticated || role === "STUDENT") {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center min-h-screen bg-[#F8FAFC]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-3 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-xs font-semibold text-slate-500 tracking-wide font-mono-metric">
+            Verifying Clearance &amp; Launching Console...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const present = data?.todayPresent ?? 41;
   const absent = data?.todayAbsent ?? 7;
@@ -206,40 +230,6 @@ export default function DashboardPage() {
             </Link>
           </div>
         </div>
-
-        {/* Role Warning / Unauthorized Alert Banner */}
-        {role === "STUDENT" && (
-          <div className="mb-6 p-4 rounded-2xl bg-sky-50 border border-sky-200 flex items-start sm:items-center justify-between gap-4 text-sky-900 text-sm">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-sky-600 text-2xl">school</span>
-              <div>
-                <span className="font-bold">Student Member Mode Active ({student?.name || "Student"} • {student?.memberId || ""}):</span> You are viewing the executive administrative overview. For your personal attendance roll and department wing roster, open your Student Portal.
-              </div>
-            </div>
-            <Link
-              href="/student"
-              className="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-mono-metric font-bold text-xs shrink-0 flex items-center gap-1.5"
-            >
-              <span>Student Portal</span>
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </Link>
-          </div>
-        )}
-
-        {role === "UNAUTHORIZED" && (
-          <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 flex items-start sm:items-center justify-between gap-4 text-rose-900 text-sm">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-rose-600 text-2xl">warning</span>
-              <div>
-                <span className="font-bold">Unauthorized Student Mode Active:</span> Mutations and attendance submissions
-                are rejected with HTTP 403 Forbidden. Use the top-right profile dropdown to switch to Admin or President mode.
-              </div>
-            </div>
-            <span className="px-2.5 py-1 rounded-full bg-rose-200/80 text-rose-800 text-xs font-mono-metric font-bold shrink-0">
-              HTTP 403
-            </span>
-          </div>
-        )}
 
         {/* 4-Column Laptop KPI Bento Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">

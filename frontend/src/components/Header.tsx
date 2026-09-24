@@ -2,12 +2,13 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 
 export function Header() {
   const pathname = usePathname();
-  const { admin, student, role, loginAsRole, logout } = useAuth();
+  const router = useRouter();
+  const { admin, student, role, logout } = useAuth();
   const [showRoleMenu, setShowRoleMenu] = useState(false);
 
   const isStudent = role === "STUDENT";
@@ -127,74 +128,65 @@ export function Header() {
                 <span className="material-symbols-outlined text-slate-400 text-sm">unfold_more</span>
               </button>
 
-              {/* Role Dropdown Menu */}
+              {/* User Menu Dropdown */}
               {showRoleMenu && (
                 <div className="absolute right-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-slate-200 py-2 z-50 animate-fadeIn text-left text-xs">
                   <div className="px-4 py-2 border-b border-slate-100">
                     <p className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
-                      Switch Active User Identity
+                      Current Identity
                     </p>
-                    <p className="text-xs text-slate-600 mt-0.5">
-                      Evaluate Admin roll marking vs Student attendance:
+                    <p className="text-xs font-bold text-slate-800 mt-0.5">
+                      {role === "STUDENT" ? student?.name || "Student Member" : admin?.name || "Operations Admin"}
+                    </p>
+                    <p className="text-[11px] text-slate-500 font-mono-metric">
+                      {role === "STUDENT" ? `Roll: ${student?.memberId || ""}` : admin?.email || "admin@mithra.vit.ac.in"}
                     </p>
                   </div>
 
                   <div className="p-1 space-y-0.5">
-                    {/* Regular Admin */}
-                    <button
-                      onClick={() => {
-                        loginAsRole("ADMIN");
-                        setShowRoleMenu(false);
-                      }}
-                      className={`w-full px-3 py-2.5 rounded-xl text-left flex items-center justify-between transition-colors ${
-                        role === "ADMIN" ? "bg-emerald-50 text-emerald-900 font-bold" : "hover:bg-slate-50 text-slate-800"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <span className="material-symbols-outlined text-emerald-600 text-lg">how_to_reg</span>
-                        <div>
-                          <div className="text-xs font-bold">Operations Admin</div>
-                          <div className="text-[10px] text-slate-500 font-normal">
-                            Mark daily roll &amp; bulk save
-                          </div>
-                        </div>
-                      </div>
-                      {role === "ADMIN" && <span className="text-emerald-600 font-bold">✓</span>}
-                    </button>
-                    {/* Student Portal Link */}
-                    <Link
-                      href="/student"
-                      onClick={() => setShowRoleMenu(false)}
-                      className={`w-full px-3 py-2.5 rounded-xl text-left flex items-center justify-between transition-colors ${
-                        role === "STUDENT"
-                          ? "bg-sky-50 text-sky-900 font-bold"
-                          : "hover:bg-slate-50 text-slate-800"
-                      }`}
-                    >
-                      <div className="flex items-center gap-2.5">
-                        <span className="material-symbols-outlined text-sky-600 text-lg">school</span>
-                        <div>
-                          <div className="text-xs font-bold">
-                            {role === "STUDENT" && student ? `Student: ${student.name}` : "Student Portal"}
-                          </div>
-                          <div className="text-[10px] text-slate-500 font-normal">
-                            {role === "STUDENT" && student ? `${student.departmentName || "Club Wing"} • ${student.memberId}` : "View your personal attendance"}
-                          </div>
-                        </div>
-                      </div>
-                      {role === "STUDENT" && <span className="text-sky-600 font-bold">✓</span>}
-                    </Link>
+                    {role !== "STUDENT" ? (
+                      <>
+                        <Link
+                          href="/dashboard"
+                          onClick={() => setShowRoleMenu(false)}
+                          className="w-full px-3 py-2 rounded-xl text-left hover:bg-slate-50 flex items-center gap-2 text-slate-700 font-medium"
+                        >
+                          <span className="material-symbols-outlined text-base text-amber-600">dashboard</span>
+                          <span>Executive Dashboard</span>
+                        </Link>
+                        <Link
+                          href="/attendance"
+                          onClick={() => setShowRoleMenu(false)}
+                          className="w-full px-3 py-2 rounded-xl text-left hover:bg-slate-50 flex items-center gap-2 text-slate-700 font-medium"
+                        >
+                          <span className="material-symbols-outlined text-base text-emerald-600">how_to_reg</span>
+                          <span>Daily Attendance Roll</span>
+                        </Link>
+                      </>
+                    ) : (
+                      <Link
+                        href="/student"
+                        onClick={() => setShowRoleMenu(false)}
+                        className="w-full px-3 py-2 rounded-xl text-left hover:bg-slate-50 flex items-center gap-2 text-slate-700 font-medium"
+                      >
+                        <span className="material-symbols-outlined text-base text-sky-600">school</span>
+                        <span>My Attendance Portal</span>
+                      </Link>
+                    )}
                   </div>
 
                   <div className="border-t border-slate-100 mt-1 pt-1 px-1">
-                    <Link
-                      href="/login"
-                      onClick={() => setShowRoleMenu(false)}
-                      className="w-full px-3 py-2 rounded-xl text-left hover:bg-slate-100 flex items-center gap-2 text-slate-600 font-medium"
+                    <button
+                      onClick={() => {
+                        setShowRoleMenu(false);
+                        logout();
+                        router.push("/login");
+                      }}
+                      className="w-full px-3 py-2 rounded-xl text-left hover:bg-rose-50 flex items-center gap-2 text-rose-600 font-semibold cursor-pointer transition-colors"
                     >
-                      <span className="material-symbols-outlined text-base">login</span>
-                      <span>Switch Account / Sign In</span>
-                    </Link>
+                      <span className="material-symbols-outlined text-base">logout</span>
+                      <span>Sign Out</span>
+                    </button>
                   </div>
                 </div>
               )}

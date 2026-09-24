@@ -22,7 +22,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
   const [admin, setAdmin] = useState<AdminProfile | null>(null);
   const [student, setStudent] = useState<Member | null>(null);
-  const [role, setRole] = useState<AdminRole | null>("ADMIN");
+  const [role, setRole] = useState<AdminRole | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -48,9 +48,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.warn("Could not parse saved admin profile");
         }
       }
-    } else {
-      // Default to Admin role for initial visit
-      loginAsRole("ADMIN");
     }
     setIsLoading(false);
   }, []);
@@ -91,64 +88,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       if (targetRole === "STUDENT") {
         await loginWithIdentifier(studentId || "24PA1A4511");
-      } else if (targetRole === "PRESIDENT") {
-        await loginWithIdentifier("president@mithra.vit.ac.in");
-      } else if (targetRole === "ADMIN") {
-        await loginWithIdentifier("admin@mithra.vit.ac.in");
       } else {
-        // Mock unauthorized student
-        const mockToken = "mock-token:unauthorized_user:guest@vitstudent.ac.in:UNAUTHORIZED:Guest";
-        setToken(mockToken);
-        setRole("UNAUTHORIZED");
-        setAdmin(null);
-        setStudent(null);
-        localStorage.setItem("mithra_auth_token", mockToken);
-        localStorage.setItem("mithra_user_role", "UNAUTHORIZED");
-      }
-    } catch (err) {
-      console.warn("Could not login via API, using fallback context:", err);
-      if (targetRole === "STUDENT") {
-        const sid = studentId || "24PA1A4511";
-        const fallbackStudent: Member = {
-          memberId: sid,
-          name: sid === "24PA1A4520" ? "B Mythili" : "A Sai Kiran",
-          email: `${sid.toLowerCase()}@vitstudent.ac.in`,
-          departmentId: sid === "24PA1A4520" ? "dept_mk" : "dept_ai",
-          departmentName: sid === "24PA1A4520" ? "Marketing Team" : "Artificial Intelligence",
-          academicYear: "3rd Year",
-          joiningDate: "2024-08-01",
-          status: "ACTIVE",
-        };
-        const mockToken = `mock-token:${fallbackStudent.memberId}:${fallbackStudent.email}:STUDENT:${fallbackStudent.name}`;
-        setToken(mockToken);
-        setRole("STUDENT");
-        setStudent(fallbackStudent);
-        setAdmin(null);
-        localStorage.setItem("mithra_auth_token", mockToken);
-        localStorage.setItem("mithra_user_role", "STUDENT");
-        localStorage.setItem("mithra_student_profile", JSON.stringify(fallbackStudent));
-      } else if (targetRole === "PRESIDENT" || targetRole === "ADMIN") {
-        const uid = targetRole === "PRESIDENT" ? "president_01" : "admin_01";
-        const email = targetRole === "PRESIDENT" ? "president@mithra.vit.ac.in" : "admin@mithra.vit.ac.in";
-        const name = targetRole === "PRESIDENT" ? "Club President" : "Operations Admin";
-        const fallbackAdmin: AdminProfile = {
-          uid,
-          name,
-          email,
-          role: targetRole,
-          status: "ACTIVE",
-          permissions: targetRole === "PRESIDENT" ? ["all"] : ["mark_attendance", "view_reports"],
-          createdAt: new Date().toISOString(),
-          updatedAt: new Date().toISOString(),
-        };
-        const mockToken = `mock-token:${uid}:${email}:${targetRole}:${name}`;
-        setToken(mockToken);
-        setRole(targetRole);
-        setAdmin(fallbackAdmin);
-        setStudent(null);
-        localStorage.setItem("mithra_auth_token", mockToken);
-        localStorage.setItem("mithra_user_role", targetRole);
-        localStorage.setItem("mithra_admin_profile", JSON.stringify(fallbackAdmin));
+        throw new Error("Password verification required for administrative clearance.");
       }
     } finally {
       setIsLoading(false);

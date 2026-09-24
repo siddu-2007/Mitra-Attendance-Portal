@@ -2,13 +2,15 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { api } from "@/lib/api";
 import { Member, StudentAttendanceData, StudentTeamData } from "@/lib/types";
 import { useAuth } from "@/lib/auth-context";
 
 export default function StudentPortalPage() {
-  const { role, student, admin } = useAuth();
+  const router = useRouter();
+  const { role, student, admin, isAuthenticated, isLoading } = useAuth();
   const [profile, setProfile] = useState<Member | null>(student);
   const [attendance, setAttendance] = useState<StudentAttendanceData | null>(null);
   const [team, setTeam] = useState<StudentTeamData | null>(null);
@@ -71,8 +73,26 @@ export default function StudentPortalPage() {
       }
     }
 
+    if (isLoading) return;
+    if (!isAuthenticated) {
+      router.replace("/login");
+      return;
+    }
     loadStudentData();
-  }, [student, role]);
+  }, [student, role, isAuthenticated, isLoading, router]);
+
+  if (isLoading || !isAuthenticated) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center min-h-screen bg-[#F8FAFC]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-3 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-xs font-semibold text-slate-500 tracking-wide font-mono-metric">
+            Loading Student Portal...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   const percentage = attendance?.overallAttendancePercentage ?? 100;
   const isGoodStanding = percentage >= 75;

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { api } from "@/lib/api";
 import { AttendanceStatus, Department, Member } from "@/lib/types";
@@ -26,7 +27,8 @@ export interface SavedSessionSummary {
 }
 
 export default function AttendancePage() {
-  const { role, student } = useAuth();
+  const router = useRouter();
+  const { role, isAuthenticated, isLoading } = useAuth();
 
   // State
   const [date, setDate] = useState<string>(() => {
@@ -188,8 +190,17 @@ export default function AttendancePage() {
   };
 
   useEffect(() => {
+    if (isLoading) return;
+    if (!isAuthenticated) {
+      router.replace("/login");
+      return;
+    }
+    if (role !== "ADMIN" && role !== "PRESIDENT") {
+      router.replace("/student");
+      return;
+    }
     loadData();
-  }, [date, role]);
+  }, [date, role, isAuthenticated, isLoading, router]);
 
   // Status Change
   const handleToggleStatus = (memberId: string, newStatus: AttendanceStatus) => {
@@ -346,6 +357,19 @@ export default function AttendancePage() {
     d.setDate(d.getDate() + days);
     setDate(d.toISOString().split("T")[0]);
   };
+
+  if (isLoading || !isAuthenticated || (role !== "ADMIN" && role !== "PRESIDENT")) {
+    return (
+      <div className="flex-1 flex flex-col items-center justify-center min-h-screen bg-[#F8FAFC]">
+        <div className="flex flex-col items-center gap-3">
+          <div className="w-10 h-10 border-3 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-xs font-semibold text-slate-500 tracking-wide font-mono-metric">
+            Verifying Clearance &amp; Preparing Roster...
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="bg-[#F8FAFC] font-sans text-[#0F172A] flex flex-col min-h-screen">
@@ -517,40 +541,7 @@ export default function AttendancePage() {
           </div>
         </div>
 
-        {/* Security & Access Notices */}
-        {role === "STUDENT" && (
-          <div className="mb-6 p-4 rounded-2xl bg-sky-50 border border-sky-200 flex items-center justify-between text-sky-900 text-xs">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-sky-600 text-xl">school</span>
-              <div>
-                <strong className="font-semibold">Student Account Active ({student?.name || "Student"} • Roll: {student?.memberId || ""}):</strong> Daily attendance rolls are marked by Club Administrators. Visit your personal portal to review your personal records and team.
-              </div>
-            </div>
-            <Link
-              href="/student"
-              className="px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-mono-metric font-bold text-xs shrink-0 flex items-center gap-1"
-            >
-              <span>Open Student Portal</span>
-              <span className="material-symbols-outlined text-sm">arrow_forward</span>
-            </Link>
-          </div>
-        )}
-
-        {role === "UNAUTHORIZED" && (
-          <div className="mb-6 p-4 rounded-2xl bg-rose-50 border border-rose-200 flex items-center justify-between text-rose-900 text-xs">
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-rose-600 text-xl">block</span>
-              <div>
-                <strong className="font-semibold">Student Mode Restricted:</strong> You are viewing in read-only mode. Attendance
-                submission will trigger an HTTP 403 Forbidden rejection. Switch clearance in the top-right profile menu.
-              </div>
-            </div>
-            <span className="px-2 py-0.5 rounded-full bg-rose-200 text-rose-900 font-mono-metric font-bold text-[11px]">
-              READ ONLY
-            </span>
-          </div>
-        )}
-
+        {/* President Privileges Notice */}
         {role === "PRESIDENT" && (
           <div className="mb-6 p-3 rounded-2xl bg-amber-50 border border-amber-200/80 flex items-center justify-between text-amber-900 text-xs">
             <div className="flex items-center gap-2.5">

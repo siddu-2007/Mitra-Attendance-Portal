@@ -37,6 +37,11 @@ class Settings(BaseSettings):
         default=None, description="Backend secret API key for protected service-to-service calls"
     )
 
+    # Administrator Clearance Passkey
+    ADMIN_PASSKEY: str = Field(
+        default="Mithra2026#", description="Master passkey required for administrator console access"
+    )
+
     # CORS Configuration
     FRONTEND_URL: str = Field(
         default="http://localhost:3000,http://127.0.0.1:3000",

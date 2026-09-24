@@ -7,10 +7,10 @@ import { useAuth } from "@/lib/auth-context";
 
 export default function LoginPage() {
   const router = useRouter();
-  const { loginWithIdentifier, loginAsRole } = useAuth();
+  const { loginWithIdentifier } = useAuth();
 
   const [activeRole, setActiveRole] = useState<"ADMIN" | "STUDENT">("ADMIN");
-  const [identifier, setIdentifier] = useState("admin@mithra.vit.ac.in");
+  const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberSession, setRememberSession] = useState(true);
@@ -24,11 +24,8 @@ export default function LoginPage() {
 
   const handleRoleTabChange = (role: "ADMIN" | "STUDENT") => {
     setActiveRole(role);
-    if (role === "ADMIN") {
-      setIdentifier("admin@mithra.vit.ac.in");
-    } else {
-      setIdentifier("");
-    }
+    setIdentifier("");
+    setPassword("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,6 +38,14 @@ export default function LoginPage() {
           ? "Please enter your administrator email."
           : "Please enter your student registration number."
       );
+      setShowToast(true);
+      return;
+    }
+
+    if (activeRole === "ADMIN" && !password.trim()) {
+      setToastType("error");
+      setToastTitle("Passkey Required");
+      setToastMessage("Please enter your administrator clearance passkey.");
       setShowToast(true);
       return;
     }
@@ -77,19 +82,6 @@ export default function LoginPage() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleBiometrics = async () => {
-    setToastType("success");
-    setToastTitle("Biometric Signature Matched");
-    setToastMessage("VIT Campus TrustKey verified. Redirecting to Executive Console...");
-    setShowToast(true);
-    setBtnText("Clearance Approved");
-    setBtnIcon("fingerprint");
-    await loginAsRole("ADMIN");
-    setTimeout(() => {
-      router.push("/dashboard");
-    }, 800);
   };
 
   return (
@@ -290,7 +282,12 @@ export default function LoginPage() {
               {/* Password / Passkey */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-xs font-semibold text-slate-700">Clearance Passkey</label>
+                  <label className="text-xs font-semibold text-slate-700">
+                    {activeRole === "ADMIN" ? "Clearance Passkey" : "Password / Passkey (Optional)"}
+                  </label>
+                  {activeRole === "ADMIN" && (
+                    <span className="text-[11px] text-amber-600 font-mono-metric font-medium">Confidential Clearance</span>
+                  )}
                 </div>
                 <div className="relative">
                   <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg">

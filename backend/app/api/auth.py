@@ -41,15 +41,23 @@ async def login_user(
         if a.get("email", "").lower() == clean_id or a.get("uid", "").lower() == clean_id:
             admin_matches.append(a)
 
-    # In mock mode, support president / admin shortcuts
+    # Support president / admin shortcuts
     if not admin_matches:
-        if "president" in clean_id:
+        if clean_id in ["president", "president@mithra.vit.ac.in"]:
             admin_matches = [a for a in admins if a.get("role") == "PRESIDENT"]
-        elif "admin" in clean_id:
+        elif clean_id in ["admin", "admin@mithra.vit.ac.in"]:
             admin_matches = [a for a in admins if a.get("role") == "ADMIN"]
 
     if admin_matches:
         admin = admin_matches[0]
+        # Enforce passkey validation for all administrators
+        expected_passkey = getattr(settings, "ADMIN_PASSKEY", "Mithra2026#")
+        if not payload.passkey or payload.passkey.strip() != expected_passkey:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail={"success": False, "message": "Invalid administrator clearance passkey.", "error": "INVALID_PASSKEY"}
+            )
+
         if admin.get("status", "").upper() != "ACTIVE":
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
