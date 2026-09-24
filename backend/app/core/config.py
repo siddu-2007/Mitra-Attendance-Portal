@@ -39,7 +39,7 @@ class Settings(BaseSettings):
 
     # Administrator Clearance Passkey (Loaded from .env or environment variables)
     ADMIN_PASSKEY: str = Field(
-        default="", description="Master passkey required for administrator console access"
+        default="mithra2026", description="Master passkey required for administrator console access"
     )
 
     # CORS Configuration
