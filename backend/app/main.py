@@ -198,6 +198,8 @@ app.add_middleware(
 # Health Check Endpoint
 # -----------------------------------------------------------------------------
 @app.get("/health", tags=["Health"], summary="System Health Check")
+@app.get("/api/health", tags=["Health"], include_in_schema=False)
+@app.get("/api/backend/health", tags=["Health"], include_in_schema=False)
 async def health_check() -> Dict[str, str]:
     """Simple health check verifying backend availability without exposing sensitive config."""
     return {"status": "healthy"}
@@ -205,6 +207,8 @@ async def health_check() -> Dict[str, str]:
 
 # Mount all API routes under API_V1_PREFIX (/api)
 app.include_router(api_router, prefix=settings.API_V1_PREFIX)
+# Also mount under /api/backend to seamlessly support Vercel multi-service routing
+app.include_router(api_router, prefix="/api/backend")
 
 
 # -----------------------------------------------------------------------------

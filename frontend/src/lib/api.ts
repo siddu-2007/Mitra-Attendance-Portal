@@ -9,7 +9,20 @@ import {
   StudentTeamData,
 } from "./types";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api";
+export function getApiBase(): string {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL.replace(/\/$/, "");
+  }
+  if (typeof window !== "undefined") {
+    const host = window.location.hostname;
+    if (host === "localhost" || host === "127.0.0.1") {
+      return "http://localhost:8000/api";
+    }
+    // In production on deployed domain (e.g. Vercel), route through /api/backend
+    return "/api/backend";
+  }
+  return "http://localhost:8000/api";
+}
 
 export async function apiRequest<T = any>(
   endpoint: string,
@@ -25,7 +38,8 @@ export async function apiRequest<T = any>(
     headers.set("Content-Type", "application/json");
   }
 
-  const res = await fetch(`${API_BASE}${endpoint}`, {
+  const apiBase = getApiBase();
+  const res = await fetch(`${apiBase}${endpoint}`, {
     ...options,
     headers,
   });
@@ -114,7 +128,8 @@ export const api = {
     q.set("format", format);
     if (date) q.set("date", date);
 
-    const res = await fetch(`${API_BASE}/reports/daily?${q.toString()}`, {
+    const apiBase = getApiBase();
+    const res = await fetch(`${apiBase}/reports/daily?${q.toString()}`, {
       headers,
     });
     if (!res.ok) {

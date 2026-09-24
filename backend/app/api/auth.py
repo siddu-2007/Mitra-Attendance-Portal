@@ -1,5 +1,6 @@
 """Authentication and Administrator Management Endpoints."""
 
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
 from app.core.config import settings
@@ -86,6 +87,36 @@ async def login_user(
     for m in members:
         if m.get("memberId", "").lower() == clean_id or m.get("email", "").lower() == clean_id:
             member_matches.append(m)
+
+    # 3. If student not yet registered, auto-register roll number so any college student can log in
+    if not member_matches:
+        import re
+        is_student_roll = bool(re.match(r"^[0-9]{2}[a-z0-9]+$", clean_id, re.IGNORECASE))
+        is_student_email = "@vitstudent" in clean_id or ("@" in clean_id and not clean_id.endswith("mithra.vit.ac.in"))
+        is_vm_id = clean_id.startswith("vm")
+
+        if is_student_roll or is_student_email or is_vm_id:
+            raw_id = payload.identifier.strip().upper()
+            roll_id = raw_id.split("@")[0] if "@" in raw_id else raw_id
+            now_str = datetime.now(timezone.utc).isoformat()
+            new_student = {
+                "memberId": roll_id,
+                "name": f"Student ({roll_id})",
+                "email": f"{roll_id.lower()}@vitstudent.ac.in",
+                "branch": "Engineering",
+                "departmentId": "dept_ai",
+                "departmentName": "Artificial Intelligence",
+                "academicYear": "2nd Year" if roll_id.startswith("24") else "3rd Year",
+                "joiningDate": "2024-08-01",
+                "status": "ACTIVE",
+                "createdAt": now_str,
+                "updatedAt": now_str,
+            }
+            try:
+                db.collection("members").document(roll_id).set(new_student)
+            except Exception:
+                pass
+            member_matches.append(new_student)
 
     if member_matches:
         student = member_matches[0]

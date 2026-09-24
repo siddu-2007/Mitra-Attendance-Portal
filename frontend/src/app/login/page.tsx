@@ -30,7 +30,8 @@ export default function LoginPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!identifier.trim()) {
+    const cleanId = identifier.trim();
+    if (!cleanId) {
       setToastType("error");
       setToastTitle("Input Required");
       setToastMessage(
@@ -42,7 +43,14 @@ export default function LoginPage() {
       return;
     }
 
-    if (activeRole === "ADMIN" && !password.trim()) {
+    const looksLikeStudent =
+      activeRole === "STUDENT" ||
+      /^[0-9]{2}[A-Za-z0-9]+/i.test(cleanId) ||
+      cleanId.toLowerCase().includes("@vitstudent") ||
+      cleanId.toUpperCase().startsWith("VM");
+    const effectiveRole: "ADMIN" | "STUDENT" = looksLikeStudent ? "STUDENT" : "ADMIN";
+
+    if (effectiveRole === "ADMIN" && !password.trim()) {
       setToastType("error");
       setToastTitle("Passkey Required");
       setToastMessage("Please enter your administrator clearance passkey.");
@@ -55,7 +63,7 @@ export default function LoginPage() {
     setBtnIcon("progress_activity");
 
     try {
-      const res = await loginWithIdentifier(identifier.trim(), password);
+      const res = await loginWithIdentifier(cleanId, password, effectiveRole);
       const isStudent = res.role === "STUDENT";
 
       setBtnText("Clearance Approved");
@@ -69,9 +77,15 @@ export default function LoginPage() {
       );
       setShowToast(true);
 
+      const targetPath = res.portalRedirect || (isStudent ? "/student" : "/dashboard");
       setTimeout(() => {
-        router.push(res.portalRedirect || (isStudent ? "/student" : "/dashboard"));
-      }, 700);
+        router.push(targetPath);
+        setTimeout(() => {
+          if (typeof window !== "undefined" && window.location.pathname !== targetPath) {
+            window.location.href = targetPath;
+          }
+        }, 300);
+      }, 600);
     } catch (err: any) {
       setBtnText("Authenticate & Enter");
       setBtnIcon("arrow_forward");
@@ -273,7 +287,15 @@ export default function LoginPage() {
                         : "Enter your Registration Number (e.g. 24PA1A...)"
                     }
                     value={identifier}
-                    onChange={(e) => setIdentifier(e.target.value)}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      setIdentifier(val);
+                      if (/^[0-9]{2}[A-Za-z0-9]/i.test(val) && activeRole !== "STUDENT") {
+                        setActiveRole("STUDENT");
+                      } else if ((val.toLowerCase().includes("admin@") || val.toLowerCase().includes("president@")) && activeRole !== "ADMIN") {
+                        setActiveRole("ADMIN");
+                      }
+                    }}
                     className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500/20 text-slate-900 transition-all font-mono-metric"
                   />
                 </div>
